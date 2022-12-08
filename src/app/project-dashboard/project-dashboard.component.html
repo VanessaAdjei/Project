@@ -1,0 +1,139 @@
+<section>
+  <div class="card shadow my-2">
+      <div class="card-header">
+          <div class="row flex-between-center">
+              <div class="col-md-4 d-flex align-items-center pe-0">
+                  <h5 class="mb-0 text-nowrap py-2 py-xl-0">Project List</h5>
+              </div>
+              <div class="col-md-8 ms-auto text-end ps-0">
+                  
+              </div>
+          </div>
+      </div>
+      <div class="card-body p-0">
+          <div class="table-responsive">
+              <table class="table table-striped table-hover mb-0">
+                  <thead>
+                      <tr>
+        <th>Id</th>
+        <th>Image Title</th>
+        <th>Title</th>
+        <th>Description</th>
+        
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let project of allproject">
+            <td>{{project.id}}</td>
+            <td>{{project.imageURL}}</td>
+            <td>{{project.title}}</td>
+            <td>{{project.description}}</td>
+            
+        
+        <td>
+            <input type="button" value="Edit" (click)="EditProject(project)" data-bs-toggle="modal" data-bs-target="#exampleModal" />
+            <input type="button" value="Upload1" (click)="open(tryform,project)" data-bs-toggle="modal" data-bs-target="#exampleModal1" />
+            <!-- <input type="button" value="Delete" (click)="DeleteProject(project)" /> -->
+            <!-- <input type="file" 
+            (change)="onChange($event)">
+               <button (click)="onUpload()" 
+                    class="btn btn-success">
+                    Upload
+                </button> -->
+          
+          
+       
+            
+            
+
+        </td>
+    </tr>
+</tbody>
+</table>
+
+<div class="border-top text-muted fixed-bottom p-2">
+  <div class="container text-center">
+  <button  type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Add
+    Project</button>
+    </div>
+</div>
+
+
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add a new Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="row g-3" [formGroup]="formValue">
+                <div class="col-md-6">
+                    <label for="inputId" class="form-label">Project Title <title></title></label>
+                    <input type="text" formControlName="title" class="form-control" id="input">
+                  </div>
+                 
+                <div class="col-md-6">
+                  <label for="inputDescription" class="form-label">Description</label>
+                  <input type="text" formControlName="description" class="form-control" id="inputDescription">
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="inputImage" class="form-label">Image Uplaod</label>
+                  <input class="form-control" type="file" 
+            (change)="onChange($event)">
+  
+               <button (click)="onUpload()" 
+                    class="btn btn-success">
+                    Upload
+                </button>
+                   
+                  
+                </div>
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning"  data-bs-dismiss="modal">Close</button>
+          <button *ngIf="btnSaveShow" type="button" class="btn btn-primary" (click)="AddProject()" >Register</button>
+          <button *ngIf="btnUpdateShow" type="button" class="btn btn-primary" (click)="UpdateProject()" >Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    
+    
+ 
+      <ng-template #tryform  let-modal>
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a new Project</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="row g-3" [formGroup]="formValue1">
+                  <div class="col-md-6">
+                    <label for="inputImage" class="form-label">Project Image</label>
+                    <!-- trial -->
+                    <input type="text" hidden formControlName="id" value="">
+                    <input 
+                    formControlName="file"
+                    id="file" 
+                    type="file" 
+                    class="form-control"
+                   onFileChange="onChange($event)">
+                
+                    <button class="btn btn-primary" type="submit" (click)="onUpload()">Submit</button>
+                    
+                  </div>
+        
+        
+                </form>
+              </div> </div></div></div>
+      </ng-template>
