@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://saasfluxgh.com/techadengine/api/v1/'
+  // baseUrl: 'https://saasfluxgh.com/techadengine/api/v1/'
+  baseUrl:'http://10.1.1.102:8080/tagcoreapp/api/v1/'
 };
 
 /*

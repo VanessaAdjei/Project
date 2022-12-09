@@ -2,8 +2,6 @@ import { HttpErrorResponse, HttpEventType } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 import { ApiService } from '../shared/api.service';
 import { ProjectModel } from './project.model';
 
@@ -18,9 +16,7 @@ export class ProjectDashboardComponent implements OnInit {
 
   formValue!: FormGroup;
   formValue1!: FormGroup;
-
   projectobj: ProjectModel = new ProjectModel;
-
   allproject: any;
 
   btnUpdateShow: boolean = false;
@@ -28,15 +24,10 @@ export class ProjectDashboardComponent implements OnInit {
   btnSaveShow: boolean = true;
   file : any;
   
-  selectedId!: string;
+  selectedId: any;
   httpClient: any;
-exampleModal1: any;
+  exampleModal1: any;
   
-
-
- 
-
-
 
 
   constructor(private formBuilder: FormBuilder, private api: ApiService, private modalService: NgbModal) { }
@@ -162,18 +153,18 @@ open(tryform:any ,project: ProjectModel){
 
     
   console.log(this.selectedId)
-    // this.modalService.open(tryform, this.selectedId);
+    this.modalService.open(tryform, this.selectedId);
 }
 
 
 
 onUpload() {
   console.log(this.formValue1.getRawValue())
-  // console.log(this.file);
-  // this.api.upload(this.file).subscribe((res: any) => {
-  //   alert("Record Uploaded");
-  //     }
-  // );
+  console.log(this.file);
+  this.api.upload(this.file).subscribe((res: any) => {
+   alert("Record Uploaded");
+     }
+   );
 }
 
 
